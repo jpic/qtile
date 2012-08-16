@@ -1,0 +1,20 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+
+before_install:
+  - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq qtile python-xlib xserver-xephyr
+
+install:
+  - pip install -q nose
+  - python setup.py -q install
+
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
+
+script: cd test; nosetests
