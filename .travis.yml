@@ -4,9 +4,9 @@ python:
   - "2.7"
 
 before_install:
-  - deactivate
-  - virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
-  - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
+  - time deactivate
+  - time virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
+  - time source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
   - python -c "import pprint, sys; pprint.pprint(sys.path)"
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get update
