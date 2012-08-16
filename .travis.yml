@@ -3,6 +3,9 @@ python:
   - "2.6"
   - "2.7"
 
+env:
+  - VIRTUALENV_SYSTEM_SITE_PACKAGES=true
+
 before_install:
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get update -qq
