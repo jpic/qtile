@@ -9,7 +9,6 @@ before_install:
   - sudo apt-get install -qq qtile python-xlib xserver-xephyr
 
 install:
-  - pip install -q nose
   - python setup.py -q install
 
 before_script:
