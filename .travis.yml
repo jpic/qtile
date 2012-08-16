@@ -7,7 +7,9 @@ env:
   - VIRTUALENV_SYSTEM_SITE_PACKAGES=true
 
 before_install:
-  - python -c "import pprint, os; pprint.pprint(dict(os.environ))"
+  - deactivate
+  - virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
+  - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get update -qq
   - sudo apt-get install -qq qtile python-xlib xserver-xephyr
