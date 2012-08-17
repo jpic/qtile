@@ -27,4 +27,7 @@ before_install:
   ## Activate the new venv
   - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
 
+install:
+  - echo "pass"
+
 script: cd test; nosetests
