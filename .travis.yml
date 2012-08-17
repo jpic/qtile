@@ -12,7 +12,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
   - sleep 3 # give xvfb some time to start
   - xauth generate :99 . trusted
-  - randomkey=echo $(($RANDOM * $RANDOM * 2))
+  - randomkey=$(($RANDOM * $RANDOM * 2))
   - xauth add $HOSTNAME:99 . $randomkey
 
 install:
