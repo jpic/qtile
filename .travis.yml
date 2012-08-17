@@ -19,6 +19,8 @@ before_install:
   - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
 
 install:
+  - python -c "import pprint, os; pprint.pprint(dict(os.environ))"
+  - which python
   - pip install nose
   - python setup.py -q install
 
