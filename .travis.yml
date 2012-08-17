@@ -13,7 +13,7 @@ before_install:
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get -qq update
   #- sudo apt-get -qq install python-gtk2 python-xcbgen python-xlib xserver-xephyr python-xpybng xcb-proto qtile
-  - sudo apt-get install qtile python-xlib xserver-xephyr python-gtk2
+  - sudo apt-get install qtile python-xlib xserver-xephyr python-gtk2 python-nose
   
   ## Setup the virtual display and create a ~/.Xauthority file
   - export DISPLAY=:99.0
@@ -27,7 +27,6 @@ before_install:
   - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
 
 install:
-  - pip install nose
   - python setup.py -q install
 
 script: cd test; nosetests
