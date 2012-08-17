@@ -4,13 +4,13 @@ python:
   - "2.7"
 
 before_install:
-  - time deactivate
-  - time virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
-  - time source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
+  - deactivate
+  - virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
   - python -c "import pprint, sys; pprint.pprint(sys.path)"
-  - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
-  - sudo apt-get update
-  - sudo apt-get install qtile python-xlib xserver-xephyr
+  - sudo apt-get install libcairo2 libxcb1 python-cairo python-gtk2 python-xcbgen
+  - sudo apt-get install python-xlib xserver-xephyr
+  - sudo pip install -e -git+git://github.com/tych0/xpyb-ng.git#egg=xpyb-ng
+  - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
 
 install:
   - python setup.py -q install
