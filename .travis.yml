@@ -14,9 +14,10 @@ before_install:
   - xauth generate $DISPLAY . trusted
   - randomkey=`echo $(($RANDOM * $RANDOM * 2)) | md5sum | cut -f1 -d" "`
   - xauth add $HOSTNAME$DISPLAY . $randomkey
+  - virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
+  - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
 
 install:
-  - sudo pip install nose
-  - sudo python setup.py -q install
+  - python setup.py -q install
 
 script: cd test; nosetests
