@@ -9,7 +9,7 @@ before_install:
   - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get update
-  - sudo apt-get install qtile python-xcbgen python-xlib xserver-xephyr
+  - sudo apt-get install qtile python-gtk2 python-xcbgen python-xlib xserver-xephyr
 
 install:
   - python setup.py -q install
