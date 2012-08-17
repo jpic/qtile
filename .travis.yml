@@ -6,8 +6,11 @@ python:
 before_install:
   - deactivate
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
-  - sudo apt-get update
-  - sudo apt-get install python-gtk2 python-xcbgen python-xlib xserver-xephyr qtile
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install python-gtk2 python-xcbgen python-xlib xserver-xephyr qtile
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
   - xauth generate :99 . trusted
   - randomkey=echo $(($RANDOM * $RANDOM * 2))
   - xauth add $HOSTNAME:99 . $randomkey
@@ -15,10 +18,5 @@ before_install:
 install:
   - sudo pip install nose
   - sudo python setup.py -q install
-
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3 # give xvfb some time to start
 
 script: cd test; nosetests
