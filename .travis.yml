@@ -8,6 +8,9 @@ before_install:
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get update
   - sudo apt-get install python-gtk2 python-xcbgen python-xlib xserver-xephyr qtile
+  - xauth generate :0 . trusted
+  - randomkey=echo $(($RANDOM * $RANDOM * 2))
+  - xauth add $HOSTNAME:99 . $randomkey
 
 install:
   - sudo pip install nose
