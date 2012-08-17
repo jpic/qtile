@@ -13,7 +13,8 @@ before_install:
   ## Add tych0's PPA and install dependencies
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get -qq update
-  - sudo apt-get -qq install python-gtk2 python-xcbgen python-xlib xserver-xephyr python-xpybng xcb-proto qtile
+  #- sudo apt-get -qq install python-gtk2 python-xcbgen python-xlib xserver-xephyr python-xpybng xcb-proto qtile
+  - sudo apt-get install qtile python-xlib xserver-xephyr
   
   ## Setup the virtual display and create a ~/.Xauthority file
   - export DISPLAY=:99.0
