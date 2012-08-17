@@ -5,14 +5,12 @@ python:
 
 before_install:
   - deactivate
-  - virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
-  - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
   - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
   - sudo apt-get update
-  - sudo apt-get install qtile python-gtk2 python-xcbgen python-xlib xserver-xephyr
+  - sudo apt-get install python-gtk2 python-xcbgen python-xlib xserver-xephyr qtile
 
 install:
-  - python setup.py -q install
+  - sudo python setup.py -q install
 
 before_script:
   - export DISPLAY=:99.0
