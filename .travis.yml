@@ -10,6 +10,7 @@ before_install:
   - sudo apt-get install python-gtk2 python-xcbgen python-xlib xserver-xephyr qtile
 
 install:
+  - sudo pip install nose
   - sudo python setup.py -q install
 
 before_script:
