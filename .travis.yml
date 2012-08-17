@@ -19,6 +19,7 @@ before_install:
   - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
 
 install:
+  - pip install nose
   - python setup.py -q install
 
 script: cd test; nosetests
