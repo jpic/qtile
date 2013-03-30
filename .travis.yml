@@ -1,0 +1,33 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+
+before_install:
+  # Recreate the virtualenv with --system-site-packages
+  - deactivate
+  - sudo rm -rf ~/virtualenv/python$TRAVIS_PYTHON_VERSION
+  - virtualenv --system-site-packages --distribute --python=python$TRAVIS_PYTHON_VERSION ~/virtualenv/python$TRAVIS_PYTHON_VERSION
+  
+  ## Add tych0's PPA and install dependencies
+  - echo 'yes' | sudo apt-add-repository ppa:tycho-s/ppa
+  - sudo apt-get -qq update
+  #- sudo apt-get -qq install python-gtk2 python-xcbgen python-xlib xserver-xephyr python-xpybng xcb-proto qtile
+  - sudo apt-get install qtile python-xlib xserver-xephyr python-gtk2 python-nose
+  - sudo python setup.py install
+  
+  ## Setup the virtual display and create a ~/.Xauthority file
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
+  - xauth generate $DISPLAY . trusted
+  - randomkey=`echo $(($RANDOM * $RANDOM * 2)) | md5sum | cut -f1 -d" "`
+  - xauth add $HOSTNAME$DISPLAY . $randomkey
+  
+  ## Activate the new venv
+  - source ~/virtualenv/python$TRAVIS_PYTHON_VERSION/bin/activate
+
+install:
+  - echo "pass"
+
+script: cd test; nosetests
